@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""creates and distributes an archive to your web servers using deploy"""
+""" creates and distributes an archive to your web serversusing deploy"""
 from fabric.api import local, env, put, run
 from time import strftime
 import os.path
@@ -7,7 +7,7 @@ env.hosts = ['100.25.33.169', '3.83.18.68']
 
 
 def do_pack():
-    """function,store the path of created archive"""
+    """function and store th path o created archive"""
     nw = strftime("%Y%M%d%H%M%S")
     try:
         local("mkdir -p versions")
@@ -19,7 +19,7 @@ def do_pack():
 
 
 def do_deploy(archive_path):
-    """function using the new path of nw archive"""
+    """function, using the new path of the nw archive"""
     if os.path.isfile(archive_path) is False:
         return False
     try:
@@ -41,6 +41,7 @@ def do_deploy(archive_path):
 
 
 def deploy():
+    """createand distribute archives to webs servers"""
     archive_path = do_pack()
     if archive_path is None:
         return False
