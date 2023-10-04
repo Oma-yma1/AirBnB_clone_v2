@@ -3,6 +3,7 @@
 from fabric.api import env, put, run
 import os.path
 env.hosts = ['100.25.33.169', '3.83.18.68']
+env.user = 'ubuntu'
 
 
 def do_deploy(archive_path):
@@ -22,6 +23,7 @@ def do_deploy(archive_path):
         run("rm -rf {}web_static".format(nw_vrs))
         run("rm -rf {}".format(link))
         run("ln -s {} {}".format(nw_vrs, link))
+        print("New version deployed!")
         return True
     except ValueError:
         return False
