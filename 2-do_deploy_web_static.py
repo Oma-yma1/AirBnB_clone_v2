@@ -16,9 +16,10 @@ def do_deploy(archive_path):
         link = "/data/web_static/current"
         put(archive_path, "/tmp/")
         run("mkdir -p {}".format(nw_vrs))
-        run("tar -xzf /tmp/{} -C {} --strip-components=1".format(arcv_fl, nw_vrs))
+        run("tar -xzf /tmp/{} -C {}".format(arcv_fl, nw_vrs))
         run("rm /tmp/{}".format(arcv_fl))
-        run("rm -rf {}*".format(nw_vrs))
+        run("mv {}web_static/* {}".format(nw_vrs, nw_vrs))
+        run("rm -rf {}web_static".format(nw_vrs))
         run("rm -rf {}".format(link))
         run("ln -s {} {}".format(nw_vrs, link))
         return True
